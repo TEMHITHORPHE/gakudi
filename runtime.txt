@@ -1,3 +1,1 @@
-runtime.txt file - unless you are using the default Python runtime version.
-
-Current default Python Runtime: Python 3.10.4
+python-3.8.13
