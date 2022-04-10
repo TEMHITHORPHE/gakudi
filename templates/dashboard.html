@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard/style.css' ) }}">
+
+    <title>GaKudi Money Transfer Platform</title>
+</head>
+<body>
+    <div class="container">
+
+        <div class="top">
+
+           <a href="#"><img class="svg-1" src="{{ url_for('static', filename='dashboard/images/logo.svg' ) }}"></a>
+
+            <a href="#"><img class="svg-2" src="{{ url_for('static', filename='dashboard/images/Profile1.svg' ) }}"> </a>
+
+        </div>
+
+        <div class="dashboard">
+
+                 <p>Dashboard</p>
+                 <div class="btn">
+                    <button class="lng-btn">English Language</button>
+                    <button class="lng-btn">Hausa Language</button>
+                </div>
+        </div>
+
+        <!-- <div class="advert"></div> -->
+
+
+        <div class="center">
+            <div class="center-1">
+                <img class="wallet"src="{{ url_for('static', filename='dashboard/images/wallet.svg' ) }}" alt="">
+                <div class="int">
+                    <p>Account balance</p>
+                    <h2>N207,000</h2>
+                </div>
+            </div>
+            
+
+            <hr>
+            
+            <div class="links">
+                <!-- <div class="link">
+                    <img src="dashboard/images/footer.jpeg" alt="">
+                    <p>Send</p>
+                </div>
+                <div class="link">
+                    <img src="dashboard/images/Home.svg" alt="Receive">
+                    <p>Receive</p>
+                </div>
+                <div class="link">
+                    <img src="dashboard/images/Learn.svg" alt="">
+                    <p>Learn</p>
+                </div> -->
+                <a href="#" ><img src="{{ url_for('static', filename='dashboard/images/Group 791.svg' ) }}" alt=""></a>
+                <a href="#"><img src="{{ url_for('static', filename='dashboard/images/Group 808.svg' ) }}" alt=""></a>
+                <a href="#"><img src="{{ url_for('static', filename='dashboard/images/Group 809.svg' ) }}" alt=""></a>
+
+            </div>
+
+            <div class="tranben">
+                <button class="trans">Transactions</button>
+                <button class="benf">Beneficiary</button>
+            </div>
+
+            <div class="record">
+                <div class="info">
+                    <img src="{{ url_for('static', filename='dashboard/images/Profile.svg' ) }}" alt="">
+                    <p>Mallam Abdul
+                        <br><span>3pm today</span></p>
+                </div>
+                <div class="pag">
+                    <p class="pag-1">+ N32,000</p>
+                </div>
+            </div>
+            <div class="record">
+                <div class="info">
+                    <img src="{{ url_for('static', filename='dashboard/images/Profile.svg' ) }}" alt="">
+                    <p>Faith Maji
+                        <br><span>3pm today</span></p>
+                </div>
+                <div class="pag">
+                    <p class="pag-2">- N2,000</p>
+                </div>
+            </div>
+            <div class="record">
+                <div class="info">
+                    <img src="{{ url_for('static', filename='dashboard/images/Profile.svg') }}" alt="">
+                    <p>+2348163452786
+                    <br><span>3pm today</span></p>
+                </div>
+                <div class="pag">
+                    <p class="pag-3" >+ N15,000</p>
+                </div>
+            </div>
+
+            <div class="footer">
+                <a href="#"><img src="{{ url_for('static', filename='dashboard/images/Home.png' ) }}" alt=""></a>
+                <a href="#"><img src="{{ url_for('static', filename='dashboard/images/Learn.svg' ) }}" alt=""></a>
+                <a href="{{ url_for('product_store') }}"><img src="{{ url_for('static', filename='dashboard/images/Store.svg' ) }}" alt=""></a>
+                <a href="#"><img src="{{ url_for('static', filename='dashboard/images/Settings.png' ) }}" alt=""></a>
+                <a href="#"><img src="{{ url_for('static', filename='dashboard/images/Logout.png' ) }}" alt=""></a>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- <script src="js/bootstrap.min.js"></script> -->
+</body>
+</html>

@@ -1,0 +1,446 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+body{
+    background-image: url(./BG.svg);
+}
+
+.white-bg {
+    background-color: #fcffff;
+    width: 80%;
+    height: 90vh;
+    margin: 19px 0px 0px 40px;
+    border-radius: 29px;
+}
+
+.welcome {
+    margin-left: 12px;
+}
+
+.cash {
+    margin: 30px 0 0 87px;
+}
+
+.gakudi-1{
+    font-weight: 900;
+    padding-top: 20px;
+    margin-left: 50px;
+}
+
+.gakudi-2 {
+    margin: 0 0 0 90px;
+}
+
+.welcome p {
+    font-weight: 900;
+    color: #46958f;
+    width: 77%;
+    margin: 30px 0 0 40px;
+    font-size: medium;
+}
+
+.create-btn {
+    width: 210px;
+    margin: 20px 0 0 40px;
+}
+
+.create-btn:hover {
+    width: 220px;
+}
+
+.flex-btn {
+    display: flex;
+    margin: 20px 0 0 10px;
+} 
+
+.create-btn2 {
+    width: 110px;
+    margin: 20px 0 0 20px;
+}
+
+.create-btn2:hover {
+    width: 120px;
+}
+
+.footer-content {
+    width: 100%;
+    height: 8vh;
+    margin-top: 20px;
+    background-color: #e0f4f3;
+}
+
+.brand {
+    font-weight: 900;
+    color: #46958f;
+    text-align: center;
+    font-size: 18px;
+}
+
+.copyright {
+    font-weight: 900;
+    color: #46958f;
+    text-align: center;
+    font-size: 14px;
+}
+
+@media (min-width:900px) {
+    .white-bg {
+        margin: 19px 0px 0px 150px;
+    }
+
+    .cash {
+        margin: 40px 0 0 367px;
+    }
+
+    .gakudi-1{
+        margin-left: 280px;
+        font-size: 55px;
+    }
+    
+    .gakudi-2 {
+        margin: 0 0 0 320px;
+        font-size: 55px;
+    }
+    
+    .welcome p {
+        width: 37%;
+        margin: 30px 0 0 240px;
+        font-size: large;
+    }
+
+    .grid-btn {
+        display: grid;
+        margin-top: 30px;
+    }
+    
+    .create-btn {
+        width: 280px;
+        margin: 20px 0 0 280px;
+    }
+
+    .create-btn:hover {
+        width: 290px;
+    }
+    
+    .flex-btn {
+        display: flex;
+        margin: 20px 0 0 180px;
+    } 
+    
+    .create-btn2 {
+        width: 210px;
+        margin: 20px 0 0 30px;
+    }
+
+    .create-btn2:hover {
+        width: 220px;
+    }
+    
+    .footer-content {
+        height: 12vh;
+        margin-top: 20px;
+    }
+    
+    .brand {
+        font-size: 22px;
+        padding-top: 23px;
+    }
+    
+}
+
+@media (min-width:1500px) {
+    .welcome {
+        margin-left: 200px;
+    }
+}
+
+@media (min-width:600px) {
+
+    .grid-btn {
+        display: grid;
+    }
+}
+
+@media (width:280px) {
+    /* .white-bg {
+        margin: 19px 0px 0px 50px;
+    } */
+
+    .cash {
+        margin: 40px 0 0 47px;
+        width: 90px;
+    }
+
+    .gakudi-1{
+        margin-left: 33px;
+        font-size: 25px;
+    }
+    
+    .gakudi-2 {
+        margin: 0 0 0 53px;
+        font-size: 25px;
+    }
+    
+    .welcome p {
+        width: 87%;
+        margin: 20px 0 0 30px;
+        font-size: medium;
+    }
+
+    .grid-btn {
+        display: grid;
+        margin-top: 30px;
+    }
+    
+    .create-btn {
+        width: 120px;
+        margin: 15px 0 0 35px;
+    }
+
+    .create-btn:hover {
+        width: 130px;
+    }
+    
+    .flex-btn {
+        display: flex;
+        margin: 20px 0 0 -14px;
+    } 
+    
+    .create-btn2 {
+        width: 100px;
+        margin: 15px 0 0 10px;
+    }
+
+    .create-btn2:hover {
+        width: 105px;
+    }
+    
+    .footer-content {
+        height: 12vh;
+        margin-top: 20px;
+    }
+    
+    .brand {
+        font-size: 17px;
+        padding-top: 20px;
+    }
+}
+
+
+@media (width:360px) {
+    .welcome {
+        margin-left: -12px;
+    }
+}
+
+@media (width:820px) {
+
+    .white-bg {
+        margin-left: 86px;
+    }
+    .welcome {
+        margin-left: 142px;
+    }
+
+    .cash {
+        width: 160px;
+        margin-right: 20px;
+    }
+
+    .gakudi-1{
+        font-size: 55px;
+    }
+    
+    .gakudi-2 {
+        font-size: 55px;
+    }
+    
+    .welcome p {
+        width: 67%;
+        font-size: larger;
+    }
+
+    .grid-btn {
+        display: grid;
+    }
+    
+    .create-btn {
+        width: 240px;
+        margin: 35px 0 0 35px;
+    }
+
+    .create-btn:hover {
+        width: 250px;
+    }
+    
+    .flex-btn {
+        display: flex;
+        margin: 40px 0 0 -40px;
+    } 
+    
+    .create-btn2 {
+        width: 200px;
+        margin: 15px 0 0 10px;
+    }
+
+    .create-btn2:hover {
+        width: 210px;
+    }
+    
+    .footer-content {
+        height: 12vh;
+        margin-top: 20px;
+    }
+    
+    .brand {
+        font-size: 24px;
+        padding-top: 30px;
+    }
+}
+
+@media (width:768px) {
+
+    .white-bg {
+        margin-left: 86px;
+    }
+    .welcome {
+        margin-left: 142px;
+    }
+
+    .cash {
+        width: 160px;
+        margin-right: 20px;
+    }
+
+    .gakudi-1{
+        font-size: 55px;
+    }
+    
+    .gakudi-2 {
+        font-size: 55px;
+    }
+    
+    .welcome p {
+        width: 67%;
+        font-size: larger;
+    }
+
+    .grid-btn {
+        display: grid;
+    }
+    
+    .create-btn {
+        width: 240px;
+        margin: 35px 0 0 35px;
+    }
+
+    .create-btn:hover {
+        width: 250px;
+    }
+    
+    .flex-btn {
+        display: flex;
+        margin: 40px 0 0 -40px;
+    } 
+    
+    .create-btn2 {
+        width: 200px;
+        margin: 15px 0 0 10px;
+    }
+
+    .create-btn2:hover {
+        width: 210px;
+    }
+    
+    .footer-content {
+        height: 12vh;
+        margin-top: 20px;
+    }
+    
+    .brand {
+        font-size: 24px;
+        padding-top: 30px;
+    }
+}
+
+@media (width:912px) {
+
+    .white-bg {
+        margin-left: 86px;
+    }
+    .welcome {
+        margin-left: 172px;
+    }
+
+    .cash {
+        width: 200px;
+        margin-left: 70px;
+    }
+
+    .gakudi-1{
+        font-size: 75px;
+        margin-left: -10px;
+    }
+    
+    .gakudi-2 {
+        font-size: 75px;
+        margin-left: 70px;
+    }
+    
+    .welcome p {
+        width: 67%;
+        font-size: x-large;
+        margin-left: -10px;
+    }
+
+    .grid-btn {
+        display: grid;
+    }
+    
+    .create-btn {
+        width: 340px;
+        margin: 35px 0 0 -10px;
+    }
+
+    .create-btn:hover {
+        width: 350px;
+    }
+    
+    .flex-btn {
+        display: flex;
+        margin: 40px 0 0 -100px;
+    } 
+    
+    .create-btn2 {
+        width: 300px;
+        margin: 15px 0 0 10px;
+    }
+
+    .create-btn2:hover {
+        width: 310px;
+    }
+    
+    .footer-content {
+        height: 12vh;
+        margin-top: 20px;
+    }
+    
+    .brand {
+        font-size: 44px;
+        padding-top: 30px;
+    }
+
+    .copyright {
+        font-size: x-large;
+    }
+}
+
+@media (width:540px) {
+    .welcome {
+        margin-left: 65px;
+    }
+}
