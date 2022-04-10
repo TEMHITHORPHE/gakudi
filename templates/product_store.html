@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ url_for('static',
+            filename='product_store/product_store.css') }}">
+        <title>Document</title>
+    </head>
+    <body>
+
+
+        <div class="container">
+
+            <div class="top">
+
+                <a href="#"><img class="svg-1" src="{{ url_for('static',
+                        filename='images/logo.svg') }}"></a>
+
+                <a href="#"><img class="svg-2" src="{{ url_for('static',
+                        filename='images/Profile1.svg') }}"> </a>
+
+            </div>
+
+            <div class="dashboard">
+
+                <p>Store</p>
+                <div class="btn">
+                    <button class="lng-btn">English Language</button>
+                    <button class="lng-btn">Hausa Language</button>
+                </div>
+            </div>
+
+            <div class="centers">
+                <div class="prosol">
+                    <button class="prod">Product</button>
+                    <button class="sold">Sold/Bought</button>
+                </div>
+
+
+
+                {% for product in user_store["products"]%}
+
+                <div class="inside">
+                    <div class="left-side">
+                        <img src={{ product.imageBlob }}  alt="">
+                        <!-- <img src="{{ url_for('static', filename='images/Product-Image.png') }}" alt=""> -->
+                        <p class="rice">{{ product.name }}
+                            <br class=""><span>{{ product.description }}</span></p>
+                    </div>
+
+                    <div class="right-side">
+                        <p></p>
+                        <p>{{ product.price }}</p>
+                        <div class="img-rs">
+                            <a href="#"><img src="{{ url_for('static',filename='images/BUY.png') }}" alt=""></a>
+                            <a href="{{ url_for('product_detail', productID=product.entryID) }}"><img src="{{ url_for('static',filename='images/VIEW.png') }}" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <hr>
+
+                {% endfor %}
+
+                <!-- <div class="inside">
+                    <div class="left-side">
+                        <img src="{{ url_for('static',
+                            filename='images/Product-Image.png') }}" alt="">
+                        <p class="rice">Rice
+                            <br class=""><span>10Kg of cap Rice</span></p>
+                    </div>
+
+                    <div class="right-side">
+                        <p>N32,000</p>
+                        <div class="img-rs">
+
+                            <a href="#"><img src="{{ url_for('static',
+                                    filename='images/BUY.png') }}" alt=""></a>
+                            <a href="#"><img src="{{ url_for('static',
+                                    filename='images/VIEW.png') }}" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+                <hr>
+
+
+
+                <div class="inside">
+                    <div class="left-side">
+                        <img src="{{ url_for('static',
+                            filename='images/Product-Image.png') }}" alt="">
+                        <p class="rice">Rice
+                            <br class=""><span>10Kg of cap Rice</span></p>
+                    </div>
+
+                    <div class="right-side">
+                        <p>N32,000</p>
+                        <div class="img-rs">
+
+                            <a href="#"><img src="{{ url_for('static',
+                                    filename='images/BUY.png') }}" alt=""></a>
+                            <a href="#"><img src="{{ url_for('static',
+                                    filename='images/VIEW.png') }}" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+                <hr>
+
+
+                <div class="inside">
+                    <div class="left-side">
+                        <img src="{{ url_for('static',
+                            filename='images/Product-Image.png') }}" alt="">
+                        <p class="rice">Rice
+                            <br class=""><span>10Kg of cap Rice</span></p>
+                    </div>
+
+                    <div class="right-side">
+                        <p>N32,000</p>
+                        <div class="img-rs">
+                            <a href="#"><img src="{{ url_for('static',
+                                    filename='images/BUY.png') }}" alt=""></a>
+                            <a href="#"><img src="{{ url_for('static',
+                                    filename='images/VIEW.png') }}" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+                <hr>
+
+                <div class="inside">
+                    <div class="left-side">
+                        <img src="{{ url_for('static',
+                            filename='images/Product-Image.png') }}" alt="">
+                        <p class="rice">Rice
+                            <br class=""><span>10Kg of cap Rice</span></p>
+                    </div>
+
+                    <div class="right-side">
+                        <p>N32,000</p>
+                        <div class="img-rs">
+                            <a href="#"><img src="{{ url_for('static',
+                                    filename='images/BUY.png') }}" alt=""></a>
+                            <a href="#"><img src="{{ url_for('static',
+                                    filename='images/VIEW.png') }}" alt=""></a>
+                        </div>
+                    </div>
+                </div> -->
+
+
+
+                <div class="footer">
+                    <a href="{{ url_for('dashboard') }}"><img src="{{ url_for('static', filename='images/Home.png" alt=""></a>
+                    <a href="#"><img src="{{ url_for('static', filename='images/Learn.svg" alt=""></a>
+                    <a href="#"><img src="{{ url_for('static', filename='images/Store.svg" alt=""></a>
+                    <a href="#"><img src="{{ url_for('static', filename='images/Settings.png" alt=""></a>
+                    <a href="{{ url_for('logout') }}"><img src="{{ url_for('static', filename='images/Logout.png" alt=""></a>
+                </div>
+
+            </div>
+        </div>
+
+    </body>
+</html>

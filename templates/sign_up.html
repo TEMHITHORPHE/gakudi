@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gakudi sign-in</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='sign_up/sign_up.css') }}">
+</head>
+<body>
+    <div class="white-bg">
+        <div class="sign">
+            <h1>Sign Up</h1>
+            <p>Welcome simply enter your details to get started</p>
+        </div>
+        <form action="{{ url_for('create_user') }}" method="POST">
+        <div class="form">
+            <h2>Phone Number</h2>
+            <input type="tel" name="phone_no" placeholder="Enter your phone number">
+            <h2>Password</h2>
+            <input type="password" name="passwd" placeholder="Enter your password">
+            <h2> Confirm Password</h2>
+            <input type="password" name="passwd_confirm" placeholder="Enter your password again">
+        </div>
+        <a href="#" class="btn">
+            <button value="submit">
+                <h2>Create account</h2>
+            </button>
+        </a>
+        </form>
+        <div class="flex-lnk">
+            <a href="#">Already have an account</a>
+            <h5><a href="{{ url_for('user_login') }}">Sign In</a></h5>
+        </div>
+        <div class="lang">
+            <a href="#"><img src="{{ url_for('static', filename='sign_up/images/English.png') }}" alt=""></a>
+            <a href="#"><img src="{{ url_for('static', filename='sign_up/images/Hausa.png') }}" alt=""></a>
+        </div>
+    </div>
+
+    <div class="footer-content">
+        <p class="brand">Penny Wise</p>
+        <p class="copyright"> copyright &copy;2022</p>
+    </div>
+</body>
+</html>

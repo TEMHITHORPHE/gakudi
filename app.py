@@ -1,7 +1,10 @@
 
-from flask import Flask, abort, redirect, render_template, request, session, url_for
+from distutils.log import set_verbosity
+import time
+from flask import Flask, abort, jsonify, redirect, render_template, request, session, url_for
 from werkzeug import exceptions as Err
 from tinydb import TinyDB, Query
+import uuid
 
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0;
@@ -10,6 +13,10 @@ print("MODE: -> ", app.config["ENV"])
 
 userDB = TinyDB("db.json");
 USER = Query();
+
+storeDB = TinyDB("store_db.json");
+PRODUCT = Query();
+
 test_data = {
 	"name" : "Tochukwu Gakudi",
 	"phoneNo" : "+2348012345678",
@@ -82,17 +89,48 @@ def user_login():
 # The application also contains a logout () view function that pops up the 'username' session variable.
 # Therefore, the ' /' URL displays the start page again.
 
+
 @app.route('/logout')
 def logout():
    # remove the username from the session if it is there
-   session.pop('userID', None)
+   session.pop('userID', None);
    return redirect(url_for('hello_world'));
 
 
-@app.route('/product/add')
+@app.route('/api/v1/product/add')
 def add_product():
-	return "add product";
+	has_session = "userID" in session;
 
+	if not has_session: return redirect(url_for("user_login"));
+
+	if request.method == 'POST':
+		user_store_object = {}
+		product_object = {};
+
+		product_object["name"] = request.form.get("item_name");
+		product_object["description"] = request.form.get("item_desc");
+		product_object["price"] = request.form.get("item_price");
+		product_object["imageBlob"] = request.files["product_image"];
+		product_object["entryID"] = uuid.uuid4;
+		product_object["timestamp"] = time.time();
+
+		user_store_object["ownerID"] = session.get("userID");
+		user_store_object["products"] = [product_object];
+
+		storeDB.insert( user_store_object );
+
+		return redirect(url_for('product_store'));
+		# return jsonify({
+		# 	"operation" : "success"
+		# })
+
+
+@app.route('/product/<int:productID>')
+def product_detail(productID):
+
+	product_detail = storeDB.get(PRODUCT.ownerID == session.get("userID") and PRODUCT.entryID == productID);
+	return jsonify(product_detail);
+	
 
 @app.route('/api/v1/product/<link>')
 def product_link(link):
@@ -105,14 +143,33 @@ def product_store():
 
 	if not has_session: return redirect(url_for("user_login"));
 
-
+	user_store = storeDB.get(PRODUCT.ownerID == session.get("userID"));
+	return render_template("product_store.html", user_store = user_store);
 
 	
 @app.route('/signup')
 def create_user():
-	return "Sign Up Page";
+	if request.method == "POST":
+		userID = request.form.get("phone_no");
+		user_passwd = request.form.get("passwd");
+		user_passwd_conf = request.form.get("passwd_confirm");
 
-
+		if user_passwd != user_passwd_conf:
+			return render_template("sign_up.html");
+		if userDB.get(USER.phoneNo == userID):
+			return render_template("sign_up.html");
+		else:
+			userDB.insert({
+				"phoneNo" : userID,
+				"passwd" : user_passwd
+			})
+			session["userID"] = userID;
+			return redirect(url_for('dashboard'));
+	elif request.method == "GET":
+		return render_template("sign_up.html");
+	else:
+		abort(404);
+	# return "Sign Up Page";
 
 
 if __name__ == '__main__':

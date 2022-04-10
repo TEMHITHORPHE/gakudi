@@ -13,11 +13,11 @@
             <img src="{{ url_for('static', filename='hello_world/images/Icon.png' ) }}" alt=""  class="cash">
             <h1 class="gakudi-1">Welcome to</h1>
             <h1 class="gakudi-2">Gakudi</h1>
-            <p>A simple app designed to help you save!, make! and receive money!, plus an easy to setup store to host your products online!,
+            <p>A simple app designed to help you send! and receive! money!, plus an easy to setup store to host your products online!,
                 all from the comfort of your mobile phone
             </p>
             <div class="grid-btn">
-        <a href="#"><img src="{{ url_for('static', filename='hello_world/images/default.png' ) }}" class="create-btn"></a>
+        <a href="{{ url_for('create_user') }}"><img src="{{ url_for('static', filename='hello_world/images/default.png' ) }}" class="create-btn"></a>
         <a href="{{ url_for('user_login') }}"><img src="{{ url_for('static', filename='hello_world/images/Outline.png' ) }}" class="create-btn"></a>
             </div>
             <div class="flex-btn">
