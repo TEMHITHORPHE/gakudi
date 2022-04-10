@@ -250,7 +250,8 @@ background-color: white;
 border-radius: 10px;
 width: 90px;
 margin: auto;
-height300px400px
+/* height: 300px;
+400px */
 }
 .details h1{
     color: #235C59;
