@@ -45,9 +45,7 @@ def hello_world():
 	if 'userID' in session:
 		return redirect(url_for("dashboard"));
 	else:
-		return redirect(url_for("user_login"));
-
-	# return "<p>Hello, World!</p>"
+		return render_template("hello_world.html");
 
 
 @app.route('/dashboard')
