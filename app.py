@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from werkzeug import exceptions as Err
 
 app = Flask(__name__)
@@ -6,7 +6,8 @@ app = Flask(__name__)
 
 @app.errorhandler(Err.NotFound)
 def handle_bad_request(e):
-    return 'Page not found!', 404
+    # return 'Page not found!', 404
+    render_template("error/404.html"), 404
 
 # or, without the decorator
 # app.register_error_handler(400, handle_bad_request);
