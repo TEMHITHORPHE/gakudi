@@ -17,12 +17,3 @@ copyButton.addEventListener("click", function(ev) {
     }
 })
 
-document.getElementById(storeLinkID).addEventListener('click', function(ev) {
-    console.log(ev.target.href);
-    window.location.href = ev.target.href;
-})
-
-document.getElementById(homeIconID).addEventListener('click', function(ev) {
-    console.log(ev.target.href);
-    window.location.href = ev.target.getAttribute('href');
-})

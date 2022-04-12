@@ -8,11 +8,10 @@
     <title>Create Product</title>
 </head>
 <body>
-    
 
     <div class="container">
         <div class="details">
-            <img src="{{ url_for('static', filename='add_product/images/sign-in.png') }}" alt="">
+            <img id="backButton" src="{{ url_for('static', filename='add_product/images/sign-in.png') }}" alt="">
             <div class="explain">
                 <h1>Create Product</h1>
                 <p>Create your product and share your product to the world</p>
@@ -48,6 +47,10 @@
         </form>
         </div>
     </div>
-
+<script>
+    document.getElementById("backButton").addEventListener('click', function(e) {
+        window.history.back();
+    })
+</script>
 </body>
 </html>
