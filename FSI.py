@@ -79,34 +79,34 @@ class WOVEN_FINACE_API():
         return response.json();
 
 
-if __name__ == "__main__":
-    import uuid
-    userFlutter = {
-    # "email": "johntochukwumax@gmail.com",
-    # "is_permanent": True,
-    # "bvn": "22386020296",
-    # #   "tx_ref": "VA12",
-    # "phonenumber": "08132853731",
-    # "firstname": "Martin Hills",
-    # "lastname": "John",
-    # "narration": "John Hills Martin"
-    }
+# if __name__ == "__main__":
+#     import uuid
+#     userFlutter = {
+#     # "email": "johntochukwumax@gmail.com",
+#     # "is_permanent": True,
+#     # "bvn": "22386020296",
+#     # #   "tx_ref": "VA12",
+#     # "phonenumber": "08132853731",
+#     # "firstname": "Martin Hills",
+#     # "lastname": "John",
+#     # "narration": "John Hills Martin"
+#     }
 
-    userWave = {
-        "customer_reference" : str(uuid.uuid4()),
-        "mobile_number" : "098",
-        # "passwd" : "password",
-        # "balance" : 0,
-        "name" : "tyfdeq 01",
-        "email": "eqfw@gakudi.com",
-        "use_frequency": 100,
-        "max_amount": 3000,
-        # "walletAddress" : accountDetails;
-        # "account_name": 'Penny Wisemen'
-    } 
-    wfAPI = WOVEN_FINACE_API();
-    wfAPI.createNewUserAndVirtualAccount(userWave);
+#     userWave = {
+#         "customer_reference" : str(uuid.uuid4()),
+#         "mobile_number" : "098",
+#         # "passwd" : "password",
+#         # "balance" : 0,
+#         "name" : "tyfdeq 01",
+#         "email": "eqfw@gakudi.com",
+#         "use_frequency": 100,
+#         "max_amount": 3000,
+#         # "walletAddress" : accountDetails;
+#         # "account_name": 'Penny Wisemen'
+#     } 
+#     wfAPI = WOVEN_FINACE_API();
+#     wfAPI.createNewUserAndVirtualAccount(userWave);
 
-    # fwAPI = FLUTTER_WAVE_API();
-    # fwAPI.createNewUserAndVirtualAccount(userWave);
+#     # fwAPI = FLUTTER_WAVE_API();
+#     # fwAPI.createNewUserAndVirtualAccount(userWave);
 

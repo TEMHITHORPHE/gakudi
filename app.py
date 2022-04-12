@@ -191,16 +191,16 @@ def create_user():
 				"phoneNo" : userID,
 				"passwd" : user_passwd,
 				"balance" : 0.0,
-				"name" : userID
-				# "walletAddress" : accountDetails;
-			} 
+				"name" : userID,
+				"walletAddress" : str(uuid.uuid4())
+				}			
 
-			accountDetails = WovenAPI.createNewUserAndVirtualAccount(user);
-			accountDetails = accountDetails['data'];
+			# accountDetails = WovenAPI.createNewUserAndVirtualAccount(user);
+			# accountDetails = accountDetails['data'];
 
-			user['data'] = accountDetails;
+			# user['data'] = accountDetails;
 
-			print("======= User =======", user)
+			print("======= User =======", user);
 			userDB.insert( user );
 
 			session["userID"] = userID;
