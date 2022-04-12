@@ -37,13 +37,12 @@
                 <img class="wallet"src="{{ url_for('static', filename='dashboard/images/wallet.svg' ) }}" alt="">
                 <div class="int">
                     <p>Account balance</p>
-                    <h2>N207,000</h2>
+                    <h2>₦ {{ user.get('balance') }}</h2>
                 </div>
             </div>
-            
 
             <hr>
-            
+
             <div class="links">
                 <!-- <div class="link">
                     <img src="dashboard/images/footer.jpeg" alt="">

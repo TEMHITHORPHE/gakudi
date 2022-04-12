@@ -1,7 +1,7 @@
 
 const copyID = "q165";
 const linkDisplayID = "q170"
-const storeLinkID = "q168"
+const storeLinkID = "q166"
 const homeIconID = "q176"
 copyButton = document.getElementById(copyID);
 
@@ -17,3 +17,7 @@ copyButton.addEventListener("click", function(ev) {
     }
 })
 
+
+document.getElementById(storeLinkID).addEventListener('click', function(ev) {
+    document.getElementById("success2store").click();
+});

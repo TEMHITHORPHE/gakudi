@@ -6,12 +6,15 @@ from werkzeug import exceptions as Err
 from tinydb import TinyDB, Query
 from tinydb.operations import add
 from utilities import convertImageToBase64Blob
+from FSI import WOVEN_FINACE_API
 import uuid
 
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0;
 app.config["SECRET_KEY"] = "192b9bdd22ab9ed4d12e236123456FE9993ec15f71bbf5dc987d54727823bcbf"
-print("MODE: -> ", app.config["ENV"])
+# print("MODE: -> ", app.config["ENV"])
+
+WovenAPI = WOVEN_FINACE_API();
 
 userDB = TinyDB("db.json");
 USER = Query();
@@ -29,6 +32,7 @@ test_data = {
 if not userDB.get(USER.phoneNo == test_data["phoneNo"]):
 	userDB.insert(test_data);
 
+
 # Prevent Caching
 @app.after_request
 def add_header(r):
@@ -37,6 +41,7 @@ def add_header(r):
 	r.headers["Expires"] = "0"
 	r.headers['Cache-Control'] = 'public, max-age=0'
 	return r
+
 
 # Setup a default error handler
 @app.errorhandler(Err.NotFound)
@@ -55,16 +60,6 @@ def hello_world():
 		return redirect(url_for("dashboard"));
 	else:
 		return render_template("hello_world.html");
-
-
-@app.route('/dashboard')
-def dashboard():
-	if 'userID' not in session:
-		return redirect(url_for("user_login"));
-	else:
-		user = userDB.get(USER.phoneNo == session.get("userID"));
-		user["userID"] = session.get("userID");
-		return render_template("dashboard.html", user = user);
 
 
 @app.route('/login', methods = ['GET', 'POST'])
@@ -139,9 +134,16 @@ def product_detail(productID):
 	return jsonify(product_detail);
 	
 
-@app.route('/instapay/<link>')
+@app.route('/instapay/<link>', methods=['GET'])
 def product_instapay(link):
-	return 'Product Detail For' + link;
+	# return 'Product Detail For' + link;
+	if request.method == 'GET':
+		productRef = storeDB.get(PRODUCT.productID == link.strip())
+		if productRef == None:
+			abort(404);
+		return render_template("instapay_link.html", product = productRef);
+	else:
+		abort(404);
 
 
 @app.route('/store', methods=['GET'])
@@ -158,6 +160,17 @@ def product_store():
 		abort(404);
 
 
+@app.route('/dashboard')
+def dashboard():
+	if 'userID' not in session:
+		return redirect(url_for("user_login"));
+	else:
+		user = userDB.get(USER.phoneNo == session.get("userID"));
+		user["userID"] = session.get("userID");
+		return render_template("dashboard.html", user = user);
+
+
+
 @app.route('/signup', methods = ['POST', 'GET'])
 def create_user():
 	if request.method == "POST":
@@ -166,23 +179,33 @@ def create_user():
 		user_passwd_conf = request.form.get("passwd_confirm");
 
 		if user_passwd != user_passwd_conf:
+			print("=====  Password is same  ======")
 			return render_template("sign_up.html");
 		if userDB.get(USER.phoneNo == userID):
+			print("=====   User is already here ======")
 			return render_template("sign_up.html");
 		else:
 
-			# accountDetails = createNewUserAndVirtualAccount();
-
-			userDB.insert( {
-				"id" : str(uuid.uuid4()),
+			user = {
+				"userID" : str(uuid.uuid4()),
 				"phoneNo" : userID,
 				"passwd" : user_passwd,
-				"balance" : 0,
+				"balance" : 0.0,
+				"name" : userID
 				# "walletAddress" : accountDetails;
-			} );
+			} 
+
+			accountDetails = WovenAPI.createNewUserAndVirtualAccount(user);
+			accountDetails = accountDetails['data'];
+
+			user['data'] = accountDetails;
+
+			print("======= User =======", user)
+			userDB.insert( user );
 
 			session["userID"] = userID;
 			return redirect(url_for('dashboard'));
+
 	elif request.method == "GET":
 		return render_template("sign_up.html");
 	else:
@@ -212,6 +235,8 @@ def send_money():
 	else:
 		abort(404);
 
+
+
 @app.route('/transfer', methods=[ 'GET'])
 def wallet_funds_transfer():
 	has_session = "userID" in session;
@@ -232,7 +257,6 @@ def wallet_to_wallet_transfer():
 		try:
 			phone_number_as_account_number = request.form.get("telephone");
 			amount_to_send = float(request.form.get("amount"));
-
 			sender = userDB.get(USER.phoneNo == session.get("userID"));
 			# if sender.get("")
 
@@ -240,8 +264,6 @@ def wallet_to_wallet_transfer():
 			abort(404)
 	if request.method == "GET":
 		abort(404);
-
-
 
 
 if __name__ == '__main__':

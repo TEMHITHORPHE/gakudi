@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='instapay_link/instapay_link.css') }} ">
+    <title>Product Page</title>
+</head>
+<body>
+    <div class="comtainer">
+        <div class="center">
+            <div class="top-image">
+                <a href="#"><img src="{{ url_for('static', filename='instapay_link/images/sign-in.png' ) }}" alt=""></a>
+            </div>
+
+            <div class="center-text">
+                <p>Store</p>
+                <img src={{ "data:image/webp;base64," + product.get("imageBlob") }} alt="">
+                <!-- <img src="{{ url_for('static', filename='instapay_link/images/Product-Image.png' ) }}" alt=""> -->
+            </div>
+            <div class="product">
+                <h1>{{ product.name }}</h1>
+                <p>₦{{ product.price }}</p>
+            </div>
+
+            <div class="relate">
+                <p>Description</p>
+                <p class="second">{{ product.description }}</p> </p>
+            </div>
+
+            <a href="{{ url_for('send_money') }}"><button>Pay From wallet</button></a>
+
+            <div class="last-img">
+                <a href="#"><img src="{{ url_for('static', filename='instapay_link/images/Home.png' ) }}" alt=""></a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
