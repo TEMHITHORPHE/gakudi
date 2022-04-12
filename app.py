@@ -3,7 +3,7 @@ from distutils.log import set_verbosity
 import time
 from flask import Flask, abort, jsonify, redirect, render_template, request, session, url_for
 from werkzeug import exceptions as Err
-from tinydb import TinyDB, Query
+from tinydb import TinyDB, Query, where
 from tinydb.operations import add
 from utilities import convertImageToBase64Blob
 # from FSI import WOVEN_FINACE_API
@@ -165,7 +165,7 @@ def dashboard():
 	if 'userID' not in session:
 		return redirect(url_for("user_login"));
 	else:
-		user = userDB.get(USER.phoneNo == session.get("userID"));
+		user = userDB.get(where("phoneNo") == session.get("userID"));
 		user["userID"] = session.get("userID");
 		return render_template("dashboard.html", user = user);
 
@@ -181,7 +181,7 @@ def create_user():
 		if user_passwd != user_passwd_conf:
 			print("=====  Password is same  ======")
 			return render_template("sign_up.html");
-		if userDB.get(USER.phoneNo == userID):
+		if userDB.get(where("phoneNo") == userID):
 			print("=====   User is already here ======")
 			return render_template("sign_up.html");
 		else:
