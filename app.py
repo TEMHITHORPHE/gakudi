@@ -176,7 +176,7 @@ def create_user():
 			userDB.insert( {
 				"id" : str(uuid.uuid4()),
 				"phoneNo" : userID,
-				"passwd" : user_passwd
+				"passwd" : user_passwd,
 				"balance" : 0,
 				# "walletAddress" : accountDetails;
 			} );
@@ -239,6 +239,7 @@ def wallet_to_wallet_transfer():
 		except:
 			abort(404)
 	if request.method == "GET":
+		abort(404);
 
 
 
