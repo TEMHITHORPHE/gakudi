@@ -4,6 +4,7 @@ import time
 from flask import Flask, abort, jsonify, redirect, render_template, request, session, url_for
 from werkzeug import exceptions as Err
 from tinydb import TinyDB, Query
+from utilities import convertImageToBase64Blob
 import uuid
 
 app = Flask(__name__)
@@ -97,7 +98,7 @@ def logout():
    return redirect(url_for('hello_world'));
 
 
-@app.route('/api/v1/product/add')
+@app.route('/product/add')
 def add_product():
 	has_session = "userID" in session;
 
@@ -107,22 +108,23 @@ def add_product():
 		user_store_object = {}
 		product_object = {};
 
-		product_object["name"] = request.form.get("item_name");
-		product_object["description"] = request.form.get("item_desc");
-		product_object["price"] = request.form.get("item_price");
-		product_object["imageBlob"] = request.files["product_image"];
-		product_object["entryID"] = uuid.uuid4;
+		product_object["name"] = request.form.get("product_name");
+		product_object["description"] = request.form.get("product_desc");
+		product_object["price"] = request.form.get("product_price");
+		product_object["imageBlob"] = convertImageToBase64Blob(request.files["product_image"].stream);
+		product_object["entryID"] = str(uuid.uuid4());
 		product_object["timestamp"] = time.time();
 
 		user_store_object["ownerID"] = session.get("userID");
 		user_store_object["products"] = [product_object];
 
 		storeDB.insert( user_store_object );
+		print("========= Product Added!! successfully!! ==========");
 
 		return redirect(url_for('product_store'));
-		# return jsonify({
-		# 	"operation" : "success"
-		# })
+
+	elif request.method == "GET":
+		return render_template("add_product.html");
 
 
 @app.route('/product/<int:productID>')
@@ -147,7 +149,7 @@ def product_store():
 	return render_template("product_store.html", user_store = user_store);
 
 	
-@app.route('/signup')
+@app.route('/signup', methods = ['POST', 'GET'])
 def create_user():
 	if request.method == "POST":
 		userID = request.form.get("phone_no");
@@ -159,10 +161,14 @@ def create_user():
 		if userDB.get(USER.phoneNo == userID):
 			return render_template("sign_up.html");
 		else:
-			userDB.insert({
+			# user_object =
+
+			userDB.insert( {
+				"id" : str(uuid.uuid4()),
 				"phoneNo" : userID,
 				"passwd" : user_passwd
-			})
+			} );
+
 			session["userID"] = userID;
 			return redirect(url_for('dashboard'));
 	elif request.method == "GET":
@@ -171,6 +177,16 @@ def create_user():
 		abort(404);
 	# return "Sign Up Page";
 
+
+@app.route('/sell', methods=['POST', 'GET'])
+def sell():
+	has_session = "userID" in session;
+	if not has_session: return redirect(url_for("user_login"));
+
+	if request.method == "GET" and request.referrer == url_for("dashboard"):
+		return render_template("sell_modal.html");
+	else:
+		abort(404);
 
 if __name__ == '__main__':
 	app.run(port=5000)

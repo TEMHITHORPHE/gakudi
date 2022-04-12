@@ -1,0 +1,199 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: josefin sans;
+    background-image: url(/static/add_product/images/background.jpeg);
+}
+
+[class*="col"] {
+    /* background-color: lightblue; */
+    border: 1px solid lightblue;
+}
+
+
+/* GAKUDI CSS STARTS HERE */
+
+
+/* FOOTER */
+
+.footer {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+    /* box-shadow: 2px 2px 2px bla; */
+    background: #e0f4f3;
+    width: 100%;
+    height: 70px;
+
+}
+.footer img{
+    width: 3em;
+    height: 4em;
+    padding: 0.5em;
+    
+}
+
+/* GAKUDI CSS ENDS HERE */
+
+
+
+
+/* CODE FOR THE CREATE PRODUCT PAGE */
+
+.details {
+background-color: white;
+border-radius: 20px;
+width: 90%;
+margin: 40px auto;
+height: 600px;
+padding: 50px auto;
+}
+.details img{
+    margin: 10px 25px;
+    width: 75px;
+}
+.details h1{
+    color: #235C59;
+}
+.details p{
+    color: #3B8E89;
+}
+.explain {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.forms {
+    width: 90%;
+    margin: 20px auto;
+}
+.forms .bor{
+    margin-bottom: px;
+}
+.form {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px 0;
+}
+.form-a {
+    justify-content: space-around;
+    margin-top: 10px 0;
+}
+#btn-img {
+    color: white;
+    background: #3B8E89;
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid #3B8E89;
+    margin-top: 20px;
+}
+.form-1 {
+    padding: 15px;
+    background: #e0f4f3;
+    border: 1px solid #3b8e89;
+    border-radius: 10px;
+}
+.form-2 {
+    padding: 15px;
+    background: #e0f4f3;
+    border: 1px solid #3b8e89;
+    border-radius: 10px;
+    width: 100%;
+    margin-left: 0px;
+}
+.post {
+    margin: 0px 2px;
+}
+.last-btn {
+    width: 50%;
+    margin: auto 80px;
+}
+
+
+/* CODE FOR THE SIGN-UP PAGE */
+
+/* CODE FOR STORE PAGE */
+
+
+.centers {
+    background-image: url(/static/add_product/images/white.jpeg);
+    border-radius: 20px;
+    width: 90%;
+    height: 600px;
+    align-items: center;
+    margin: auto;
+    padding: 20px 0px;
+
+}
+.prosol {
+    background-color: #bdbdbd;
+    width: 90%;
+    height: 40px;
+    margin: 10px auto;
+    border-radius: 30px;
+    display: flex;
+    justify-content: space-between;
+
+}
+.prod {
+    background-color: #e0f4f3;
+    color: #3B8E89;
+    border-radius: 15px;
+    width: 40%;
+    margin: 3px 0;
+    text-align: center;
+    border: 1px solid #3B8E89;
+    margin-left: 10px;
+}
+.sold {
+    background-color: transparent;
+    color: rgb(88, 87, 87);
+    border-radius: 15px;
+    width: 40%;
+    margin: 3px 0;
+    text-align: center;
+    border: 1px solid #e0f4f3;
+    margin-right: 10px;
+}
+
+.inside {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin: 20px 0px;
+}
+.left-side {
+    display: flex;
+    width: 45%;
+}
+.left-side img {
+    width: 50px;
+    height: auto;
+    margin: 0px 10px 0px 0px;
+}
+.left-side img p {
+    margin-bottom: 10px;
+}
+
+.right-side {
+    float: right;
+    width: 45%;
+}
+.right-side p {
+    margin-left: 13px;
+    margin-bottom: 10px;
+    color: green;
+}
+.img-rs {
+    display: flex;
+    justify-content: space-around;
+}
+.img-rs img {
+    width: 50px;
+}
+
+/* CODE FOR THE STORE PAGE */

@@ -1,0 +1,25 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sell Modal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='sell_modal/sell_modal.css') }}">
+</head>
+<body>
+
+    <div class="white-bg">
+        <a href="#" style="display: flex;justify-content: center;"><img src="{{ url_for('static', filename='sell_modal/images/logo.png') }}" alt="" class="logos" style="margin-right: 10px;"></a>
+        <div class="sell">
+            <a href="{{ url_for('add_product') }}" style="display: flex;justify-content: center;"><img src="{{ url_for('static', filename='sell_modal/images/create.png') }}" alt="" class="btn"></a>
+            <a href="#" style="display: flex;justify-content: center;margin-top: 20px;"><img src="{{ url_for('static', filename='sell_modal/images/manage.png') }}" alt="" class="btn" ></a>
+        </div>
+        <div class="icon" style="display: flex;justify-content: center;">
+            <a href="#"><img src="{{ url_for('static', filename='sell_modal/images/Home.png') }}" alt="" style="margin-top: 120%;"></a>
+        </div>
+    </div>
+    <div class="footer-content">
+        <p class="brand">Penny Wise</p>
+        <p class="copyright"> copyright ©2022</p>
+    </div>
+
+</body></html>
