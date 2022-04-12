@@ -113,17 +113,20 @@ def add_product():
 		product_object["description"] = request.form.get("product_desc");
 		product_object["price"] = request.form.get("product_price");
 		product_object["imageBlob"] = convertImageToBase64Blob(request.files["product_image"].stream);
-		product_object["entryID"] = str(uuid.uuid4());
+		product_object["productID"] = str(uuid.uuid4());
 		product_object["timestamp"] = time.time();
 		product_object["ownerID"] = session.get("userID");
+		# product_object["paymentLink"] = ();
+
 
 		# user_store_object["ownerID"] = session.get("userID");
 		# user_store_object["products"] = [product_object];
 
 		storeDB.insert( product_object );
 		print("========= Product Added!! successfully!! ==========");
-
-		return redirect(url_for('product_store'));
+		link = product_object["productID"];
+		# return redirect(url_for('product_store'));
+		return render_template("product_success.html", link = link );
 
 	elif request.method == "GET":
 		return render_template("add_product.html");
@@ -136,8 +139,8 @@ def product_detail(productID):
 	return jsonify(product_detail);
 	
 
-@app.route('/api/v1/product/<link>')
-def product_link(link):
+@app.route('/instapay/<link>')
+def product_instapay(link):
 	return 'Product Detail For' + link;
 
 
@@ -167,12 +170,15 @@ def create_user():
 		if userDB.get(USER.phoneNo == userID):
 			return render_template("sign_up.html");
 		else:
-			# user_object =
+
+			# accountDetails = createNewUserAndVirtualAccount();
 
 			userDB.insert( {
 				"id" : str(uuid.uuid4()),
 				"phoneNo" : userID,
 				"passwd" : user_passwd
+				"balance" : 0,
+				# "walletAddress" : accountDetails;
 			} );
 
 			session["userID"] = userID;
@@ -194,6 +200,48 @@ def sell():
 		return render_template("sell_modal.html");
 	else:
 		abort(404);
+
+
+@app.route('/send', methods=[ 'GET'])
+def send_money():
+	has_session = "userID" in session;
+	if not has_session: return redirect(url_for("user_login"));
+
+	if request.method == "GET":
+		return render_template("send_money.html");
+	else:
+		abort(404);
+
+@app.route('/transfer', methods=[ 'GET'])
+def wallet_funds_transfer():
+	has_session = "userID" in session;
+	if not has_session: return redirect(url_for("user_login"));
+
+	if request.method == "GET":
+		return render_template("wallet_funds_transfer.html");
+	else:
+		abort(404);
+
+
+@app.route('/wallet_to_wallet', methods=['POST'])
+def wallet_to_wallet_transfer():
+	has_session = "userID" in session;
+	if not has_session: return redirect(url_for("user_login"));
+
+	if request.method == "POST":
+		try:
+			phone_number_as_account_number = request.form.get("telephone");
+			amount_to_send = float(request.form.get("amount"));
+
+			sender = userDB.get(USER.phoneNo == session.get("userID"));
+			# if sender.get("")
+
+		except:
+			abort(404)
+	if request.method == "GET":
+
+
+
 
 if __name__ == '__main__':
 	app.run(port=5000)
