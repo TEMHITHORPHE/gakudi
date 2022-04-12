@@ -6,7 +6,7 @@ from werkzeug import exceptions as Err
 from tinydb import TinyDB, Query
 from tinydb.operations import add
 from utilities import convertImageToBase64Blob
-from FSI import WOVEN_FINACE_API
+# from FSI import WOVEN_FINACE_API
 import uuid
 
 app = Flask(__name__)
@@ -14,7 +14,7 @@ app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0;
 app.config["SECRET_KEY"] = "192b9bdd22ab9ed4d12e236123456FE9993ec15f71bbf5dc987d54727823bcbf"
 # print("MODE: -> ", app.config["ENV"])
 
-WovenAPI = WOVEN_FINACE_API();
+# WovenAPI = WOVEN_FINACE_API();
 
 userDB = TinyDB("db.json");
 USER = Query();
