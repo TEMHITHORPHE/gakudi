@@ -8,18 +8,16 @@
             filename='product_store/product_store.css') }}">
         <title>Document</title>
     </head>
-    <body>
+    <body>product_store/
 
 
         <div class="container">
 
             <div class="top">
 
-                <a href="#"><img class="svg-1" src="{{ url_for('static',
-                        filename='images/logo.svg') }}"></a>
+                <a href="#"><img class="svg-1" src="{{ url_for('static', filename='product_store/images/logo.svg') }}"></a>
 
-                <a href="#"><img class="svg-2" src="{{ url_for('static',
-                        filename='images/Profile1.svg') }}"> </a>
+                <a href="#"><img class="svg-2" src="{{ url_for('static', filename='product_store/images/Profile1.svg') }}"> </a>
 
             </div>
 
@@ -38,24 +36,22 @@
                     <button class="sold">Sold/Bought</button>
                 </div>
 
-
-
-                {% for product in user_store["products"]%}
+                {% for product in user_store%}
 
                 <div class="inside">
                     <div class="left-side">
-                        <img src={{ product.imageBlob }}  alt="">
-                        <!-- <img src="{{ url_for('static', filename='images/Product-Image.png') }}" alt=""> -->
-                        <p class="rice">{{ product.name }}
-                            <br class=""><span>{{ product.description }}</span></p>
+                        <img src={{ "data:image/webp;base64," + product.get("imageBlob") }}  alt="">
+                         <!-- <img src="{{ url_for('static', filename='images/Product-Image.png') }}" alt="">  -->
+                        <p class="rice">{{ product.get("name") }}
+                            <br class=""><span>{{ product.get("description") }}</span></p>
                     </div>
 
                     <div class="right-side">
                         <p></p>
-                        <p>{{ product.price }}</p>
+                        <p>{{ product.get("price") }}</p>
                         <div class="img-rs">
-                            <a href="#"><img src="{{ url_for('static',filename='images/BUY.png') }}" alt=""></a>
-                            <a href="{{ url_for('product_detail', productID=product.entryID) }}"><img src="{{ url_for('static',filename='images/VIEW.png') }}" alt=""></a>
+                            <a href="#"><img src="{{ url_for('static',filename='product_store/images/BUY.png') }}" alt=""></a>
+                            <a href="{{ url_for('product_detail', productID=product.entryID) }}"><img src="{{ url_for('static',filename='product_store/images/VIEW.png') }}" alt=""></a>
                         </div>
                     </div>
                 </div>
@@ -157,11 +153,11 @@
 
 
                 <div class="footer">
-                    <a href="{{ url_for('dashboard') }}"><img src="{{ url_for('static', filename='images/Home.png" alt=""></a>
-                    <a href="#"><img src="{{ url_for('static', filename='images/Learn.svg" alt=""></a>
-                    <a href="#"><img src="{{ url_for('static', filename='images/Store.svg" alt=""></a>
-                    <a href="#"><img src="{{ url_for('static', filename='images/Settings.png" alt=""></a>
-                    <a href="{{ url_for('logout') }}"><img src="{{ url_for('static', filename='images/Logout.png" alt=""></a>
+                    <a href="{{ url_for('dashboard') }}"><img src="{{ url_for('static', filename='product_store/images/Home.png') }}" alt=""></a>
+                    <a href="#"><img src="{{ url_for('static', filename='product_store/images/Learn.svg') }}" alt=""></a>
+                    <a href="#"><img src="{{ url_for('static', filename='product_store/images/Store.svg') }}" alt=""></a>
+                    <a href="#"><img src="{{ url_for('static', filename='product_store/images/Settings.png') }}" alt=""></a>
+                    <a href="{{ url_for('logout') }}"><img src="{{ url_for('static', filename='product_store/images/Logout.png') }}" alt=""></a>
                 </div>
 
             </div>

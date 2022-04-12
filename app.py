@@ -4,6 +4,7 @@ import time
 from flask import Flask, abort, jsonify, redirect, render_template, request, session, url_for
 from werkzeug import exceptions as Err
 from tinydb import TinyDB, Query
+from tinydb.operations import add
 from utilities import convertImageToBase64Blob
 import uuid
 
@@ -98,7 +99,7 @@ def logout():
    return redirect(url_for('hello_world'));
 
 
-@app.route('/product/add')
+@app.route('/product/add', methods=['POST', 'GET'])
 def add_product():
 	has_session = "userID" in session;
 
@@ -114,11 +115,12 @@ def add_product():
 		product_object["imageBlob"] = convertImageToBase64Blob(request.files["product_image"].stream);
 		product_object["entryID"] = str(uuid.uuid4());
 		product_object["timestamp"] = time.time();
+		product_object["ownerID"] = session.get("userID");
 
-		user_store_object["ownerID"] = session.get("userID");
-		user_store_object["products"] = [product_object];
+		# user_store_object["ownerID"] = session.get("userID");
+		# user_store_object["products"] = [product_object];
 
-		storeDB.insert( user_store_object );
+		storeDB.insert( product_object );
 		print("========= Product Added!! successfully!! ==========");
 
 		return redirect(url_for('product_store'));
@@ -127,7 +129,7 @@ def add_product():
 		return render_template("add_product.html");
 
 
-@app.route('/product/<int:productID>')
+@app.route('/product/<productID>')
 def product_detail(productID):
 
 	product_detail = storeDB.get(PRODUCT.ownerID == session.get("userID") and PRODUCT.entryID == productID);
@@ -139,16 +141,20 @@ def product_link(link):
 	return 'Product Detail For' + link;
 
 
-@app.route('/store')
+@app.route('/store', methods=['GET'])
 def product_store():
 	has_session = "userID" in session;
 
-	if not has_session: return redirect(url_for("user_login"));
+	if request.method == 'GET':
+		if not has_session: return redirect(url_for("user_login"));
 
-	user_store = storeDB.get(PRODUCT.ownerID == session.get("userID"));
-	return render_template("product_store.html", user_store = user_store);
+		user_store = storeDB.search(PRODUCT.ownerID == session.get("userID"));
+		print("Product ======> ", user_store)
+		return render_template("product_store.html", user_store = user_store);
+	else:
+		abort(404);
 
-	
+
 @app.route('/signup', methods = ['POST', 'GET'])
 def create_user():
 	if request.method == "POST":
@@ -180,10 +186,11 @@ def create_user():
 
 @app.route('/sell', methods=['POST', 'GET'])
 def sell():
+	print(url_for("dashboard"), "=====referrer====", request.referrer.split("/")[-1].strip())
 	has_session = "userID" in session;
 	if not has_session: return redirect(url_for("user_login"));
 
-	if request.method == "GET" and request.referrer == url_for("dashboard"):
+	if request.method == "GET" and '/' + request.referrer.split("/")[-1].strip() == url_for("dashboard"):
 		return render_template("sell_modal.html");
 	else:
 		abort(404);

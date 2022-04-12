@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='add_product/add_product.css') }}">
     <title>Create Product</title>
 </head>
 <body>
@@ -17,21 +17,18 @@
                 <h1>Create Product</h1>
                 <p>Create your product and share your product to the world</p>
             </div>
-
-            <form class="forms" action="{{ url_for('add_product') }}" method="POST">
+            <form class="forms" action="{{ url_for('add_product') }}" method="POST" enctype="multipart/form-data">
                 <div class="forms">
                     <b class="bor">Product image </b>
                     <div class="form">
-                        <input class="form-2" type="file" name="product_image" placeholder="Select product image">
+                        <input class="form-2" type="file" name="product_image" accept="image/*" placeholder="Select product image">
                         <!-- <button id="btn-img">Select Image</button> -->
                     </div>
                 </div>
                 <div class="forms">
                     <b class="bor">Product Name</b>
                     <div class="form-a">
-                        
-                        <input class="form-2" type="password" name="product_name" placeholder="Pick! a catchy product! name!">
-                    
+                        <input class="form-2" type="text" name="product_name" placeholder="Pick! a catchy product! name!">
                     </div>
                 </div>
                 <div class="forms">
